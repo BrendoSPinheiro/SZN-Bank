@@ -21,3 +21,6 @@ target/
 
 # Arquivos de backup
 *~
+
+# Env file
+.env

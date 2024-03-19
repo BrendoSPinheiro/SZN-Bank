@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: brendosp
+      changes:
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+      rollback:
+        - sql:
+            sql: DROP EXTENSION IF EXISTS "uuid-ossp";

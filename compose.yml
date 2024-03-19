@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG}
+    container_name: szn-bank_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - szn-bank_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - szn-bank_network
+  rabbitmq:
+    image: rabbitmq:${RABBIT_TAG}
+    container_name: szn-bank_rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - szn-bank_network
+
+volumes:
+  szn-bank_data:
+networks:
+  szn-bank_network:
+    driver: bridge
